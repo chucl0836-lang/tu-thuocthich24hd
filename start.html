@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>⚠️ CẢNH BÁO BẢO MẬT ⚠️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Courier New', monospace;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* background giả lập màn hình lỗi */
+    .glitch-bg {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(255,0,0,0.05) 0px, rgba(255,0,0,0.05) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,255,0,0.02) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      animation: scan 8s linear infinite;
+      z-index: 2;
+    }
+    @keyframes scan {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100%; }
+    }
+    /* hộp thông báo */
+    .virus-box {
+      position: relative;
+      z-index: 10;
+      background: rgba(10, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border: 2px solid #ff3b3b;
+      border-radius: 48px;
+      max-width: 600px;
+      width: 100%;
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 4px rgba(255,50,50,0.3), inset 0 0 20px rgba(255,0,0,0.3);
+      text-align: center;
+      animation: flicker 3s infinite;
+      transition: 0.3s;
+    }
+    @keyframes flicker {
+      0% { border-color: #ff3b3b; box-shadow: 0 0 0 2px rgba(255,0,0,0.5); }
+      50% { border-color: #ff8888; box-shadow: 0 0 0 5px rgba(255,0,0,0.8); }
+      100% { border-color: #ff3b3b; box-shadow: 0 0 0 2px rgba(255,0,0,0.5); }
+    }
+    .icon-big {
+      font-size: 5rem;
+      filter: drop-shadow(0 0 10px red);
+      margin-bottom: 16px;
+      animation: shake 0.2s infinite;
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px); }
+      25% { transform: translate(-1px, -2px); }
+      50% { transform: translate(2px, 1px); }
+      75% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0,0); }
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff4d4d, #ff0000);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .warning-text {
+      background: #1e1a1a;
+      padding: 16px;
+      border-radius: 28px;
+      color: #ffb3b3;
+      font-family: monospace;
+      text-align: left;
+      margin: 20px 0;
+      border-left: 5px solid #ff4444;
+      font-size: 0.9rem;
+    }
+    .code-line {
+      font-family: 'Courier New', monospace;
+      color: #ff8888;
+      word-break: break-word;
+    }
+    .timer {
+      font-size: 2rem;
+      font-weight: bold;
+      background: black;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 60px;
+      margin: 15px 0;
+      color: #ff6666;
+      font-family: monospace;
+      letter-spacing: 4px;
+      box-shadow: inset 0 0 8px red, 0 0 8px red;
+    }
+    .access-btn {
+      background: linear-gradient(95deg, #ffbb00, #ff8800);
+      border: none;
+      padding: 14px 34px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin: 20px 0 10px;
+      color: #1e1a1a;
+      box-shadow: 0 6px 0 #aa5500;
+      font-family: inherit;
+    }
+    .access-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #aa5500;
+    }
+    .small-note {
+      font-size: 0.7rem;
+      opacity: 0.7;
+      margin-top: 20px;
+      color: #ccc;
+    }
+    .glow {
+      animation: glowPulse 1.2s infinite;
+    }
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 2px red; }
+      100% { text-shadow: 0 0 12px red; }
+    }
+  </style>
+</head>
+<body>
+<div class="glitch-bg"></div>
+<div class="scanline"></div>
+
+<div class="virus-box" id="virusBox">
+  <div class="icon-big">⚠️💀⚠️</div>
+  <h1>⚠️ BÁO ĐỘNG ĐỎ ⚠️</h1>
+  <p style="color:#ffaaaa; font-weight:500;">Hệ thống an ninh mạng <span class="glow">MEDGUARD</span> đã phát hiện truy cập bất thường</p>
+  
+  <div class="warning-text">
+    <span class="code-line">🔴 Mã lỗi: #V1RUS_FAKE_2026</span><br>
+    📍 <strong>Lỗi nghiêm trọng:</strong> Tủ thuốc gia đình của bạn đang bị tấn công từ xa!<br>
+    🕒 <strong>Tự hủy dữ liệu sau</strong> <span id="countdown" class="timer" style="font-size:1.2rem; background:transparent; padding:0;">10</span> <strong>giây</strong><br>
+    🛡️ Nhấn nút "TRUY CẬP KHẨN CẤP" để vô hiệu hóa cảnh báo và vào hệ thống bảo vệ.
+  </div>
+
+  <button class="access-btn" id="emergencyBtn">🚨 TRUY CẬP NGAY 🚨</button>
+  <div class="small-note">* Đây là màn hình chọc ghẹo không có virus thật. Hãy tận hưởng sự hồi hộp vui nhộn! 😜</div>
+</div>
+
+<script>
+  // Chuyển hướng sau 10s hoặc khi nhấn nút
+  let countdown = 10;
+  const countdownSpan = document.getElementById('countdown');
+  const btn = document.getElementById('emergencyBtn');
+
+  function redirectToMain() {
+    window.location.href = 'index.html';
+  }
+
+  function updateTimer() {
+    if (countdown <= 0) {
+      clearInterval(timerInterval);
+      redirectToMain();
+    } else {
+      countdownSpan.innerText = countdown;
+      countdown--;
+    }
+  }
+
+  let timerInterval = setInterval(updateTimer, 1000);
+
+  btn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    redirectToMain();
+  });
+</script>
+</body>
+</html>

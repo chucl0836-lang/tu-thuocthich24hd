@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tu-thuocthich24hd.vercel.app
